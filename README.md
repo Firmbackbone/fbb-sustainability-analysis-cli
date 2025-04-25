@@ -157,7 +157,7 @@ A: Both tools support English and Dutch content, with special handling for:
 - Language detection
 - Stop word removal
 - Named entity recognition
-- Sentiment analysis (English only)
+- Sentiment analysis
 
 ## Machine Learning Components
 
