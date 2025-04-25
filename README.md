@@ -211,7 +211,7 @@ The Index Generator uses natural language processing (NLP) techniques:
 3. **Sentiment Analysis**
    - Uses VADER (Valence Aware Dictionary and sEntiment Reasoner)
    - Analyzes sentiment of sentences containing keywords
-   - Provides compound sentiment scores (-1 to 1)
+   - Provides compound sentiment scores 
    - Only analyzes relevant portions of text
 
 ### Model Performance
@@ -232,8 +232,6 @@ The Index Generator uses natural language processing (NLP) techniques:
    - No training required
    - Real-time processing
    - Language-specific handling:
-     - English: Full sentiment analysis
-     - Dutch: Basic keyword matching only
 
 ### Tips for Better ML Results
 
