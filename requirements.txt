@@ -1,8 +1,12 @@
+# For windows Visual Studio Build Tools 14+ is needed!
+# Use Python 3.8.18 since this version is supported on SANE
 nltk>=3.8.1
 pandas>=2.0.0
 scikit-learn>=1.2.0
 langdetect>=1.0.9
-spacy>=3.5.0
+# After Spacy 3.7.5 support for Python 3.8 was dropped!
+spacy==3.7.5 # >=3.5.0,<=3.8.2
 beautifulsoup4>=4.12.0
 tqdm>=4.65.0
-numpy>=1.24.0 
+numpy==1.24.4 # >=1.24.0 
+blis==0.7.11 # 0.9.1 Package conflict, >=0.7.8 and < 0.8.0
