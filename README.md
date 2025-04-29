@@ -296,12 +296,13 @@ For environments without internet access, follow these steps:
 ### Required Files for Offline Use
 
 1. **NLTK Data:**
-   - punkt [direct download](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip)
-   - punkt_tab [direct download](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip)
-   - wordnet [direct download](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip)
-   - vader_lexicon [direct download](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip)
-   - omw-1.4 [direct download](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/omw-1.4.zip)
-For extr details, see the [installation instructions](https://www.nltk.org/data.html)
+   - punkt [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip)
+   - punkt_tab [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip)
+   - wordnet [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip)
+   - vader_lexicon [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip)
+   - omw-1.4 [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/omw-1.4.zip)
+
+For details on installation see the [installation instructions](https://www.nltk.org/data.html)
 
 2. **spaCy Models:**
    - en_core_web_trf
