@@ -59,9 +59,9 @@ Options:
 - `--data`: Your input file containing website text (NDJSON format)
 - `--keywords`: File containing sustainability keywords to look for
 - `--output`: Where to save the scoring results
-- `--simple-weight`: Weight for direct keyword matches (default: 0.3)
+- `--simple-weight`: Weight for direct keyword matches (default: 0.4)
 - `--advanced-weight`: Weight for synonym matches (default: 0.4)
-- `--sentiment-weight`: Weight for sentiment analysis (default: 0.3)
+- `--sentiment-weight`: Weight for sentiment analysis (default: 0.2)
 
 To calculate the final score, weights assigned to the simple, advanced and sentiment scores are used. The final score is calculated by multiplying the given weight with the retrieve score summed up per analysis type.
 
