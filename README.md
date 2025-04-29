@@ -63,6 +63,8 @@ Options:
 - `--advanced-weight`: Weight for synonym matches (default: 0.4)
 - `--sentiment-weight`: Weight for sentiment analysis (default: 0.3)
 
+To calculate the final score, weights assigned to the simple, advanced and sentiment scores are used. The final score is calculated by multiplying the given weight with the retrieve score summed up per analysis type.
+
 Example output:
 ```
 domain,simple_match_score,advanced_match_score,sentiment_score,final_score
