@@ -296,7 +296,6 @@ For environments without internet access, follow these steps:
 ### Required Files for Offline Use
 
 1. **NLTK Data:**
-   - punkt [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt.zip)
    - punkt_tab [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip)
    - wordnet [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip)
    - vader_lexicon [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip)
@@ -305,8 +304,8 @@ For environments without internet access, follow these steps:
 For details on installation see the [installation instructions](https://www.nltk.org/data.html)
 
 2. **spaCy Models:**
-   - en_core_web_trf
-   - nl_core_news_sm
+   - [en_core_web_trf (3.7.3)](https://github.com/explosion/spacy-models/releases/tag/en_core_web_trf-3.7.3) [tar.gz](https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.7.3/en_core_web_trf-3.7.3.tar.gz)
+   - [nl_core_news_sm (3.7.0)](https://github.com/explosion/spacy-models/releases/tag/nl_core_news_sm-3.7.0) [tar.gz](https://github.com/explosion/spacy-models/releases/download/nl_core_news_sm-3.7.0/nl_core_news_sm-3.7.0.tar.gz)
 
 ### Verifying Installation
 
