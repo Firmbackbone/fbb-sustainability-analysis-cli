@@ -48,8 +48,9 @@ python keyword_extractor.py --text-data data/pages.ndjson \
                            --metrics data/metrics.csv \
                            --output data/keyword_imp.csv \
                            --n-keywords 25 \
-                           --min-ngram 1 \
-                           --max-ngram 2
+                           --ngrams 2 \
+                           --min-importance 0.01 \
+                           --test-size 0.2
 ```
 
 Options:
@@ -58,8 +59,9 @@ Options:
 - `--output`: Where to save the extracted keywords
 - `--n-keywords`: How many top keywords to extract (default: 20, max: 50)
 - `--test-size`: Portion of data to use for testing (default: 0.2 or 20%)
-- `--min-ngram`: Minimum n-gram size (default: 1)
-- `--max-ngram`: Maximum n-gram size (default: 2)
+- `--ngrams`: Maximum n-gram size (1=unigrams only, 2=unigrams+bigrams)
+- `--min-importance`: Minimum importance threshold for keywords (default: 0.01)
+- `--metric-column`: Column name in metrics file to use (optional)
 
 Example output:
 ```
@@ -90,14 +92,35 @@ Options:
 - `--data`: Your input file containing website text (NDJSON format)
 - `--keywords`: File containing sustainability keywords to look for
 - `--output`: Where to save the scoring results
-- `--simple-weight`: Weight for direct keyword matches (default: 0.3)
+- `--simple-weight`: Weight for direct keyword matches (default: 0.4)
 - `--advanced-weight`: Weight for synonym matches (default: 0.4)
-- `--sentiment-weight`: Weight for sentiment analysis (default: 0.3)
+- `--sentiment-weight`: Weight for sentiment analysis (default: 0.2)
+
+The final score is calculated using three components:
+
+1. **Simple Match Score**
+   - Counts direct matches of sustainability keywords
+   - Weight: 0.4 (adjustable)
+
+2. **Advanced Match Score**
+   - Includes matches of keyword synonyms
+   - Each synonym match counts as 0.5
+   - Weight: 0.4 (adjustable)
+
+3. **Sentiment Score**
+   - Analyzes the sentiment of sentences containing sustainability keywords
+   - Only calculated when keywords are found
+   - Weight: 0.2 (adjustable)
+
+The scores are normalized to be between 0 and 1, where:
+- 1.0 represents the highest scoring website in the dataset
+- 0.0 represents websites with no sustainability content
+- All other websites get scores between 0 and 1, preserving relative differences
 
 Example output:
 ```
-domain,simple_match_score,advanced_match_score,sentiment_score,final_score
-https://example.com,3,3.5,0.8,2.9
+domain,language,simple_match_score,advanced_match_score,sentiment_score,final_score,raw_score
+https://example.com,en,3,3.5,0.8,0.85,2.9
 ...
 ```
 
@@ -125,6 +148,11 @@ The final score is calculated using three components:
    - Analyzes the sentiment of sentences containing sustainability keywords
    - Only calculated when keywords are found
    - Weight: 0.2 (adjustable)
+
+The scores are normalized to be between 0 and 1, where:
+- 1.0 represents the highest scoring website in the dataset
+- 0.0 represents websites with no sustainability content
+- All other websites get scores between 0 and 1, preserving relative differences
 
 ## Data Format Requirements
 
@@ -158,7 +186,7 @@ The final score is calculated using three components:
 2. **Website Scores (CSV)**
    ```
    domain,simple_match_score,advanced_match_score,sentiment_score,final_score
-   https://example.com,3,3.5,0.8,2.9
+   https://example.com,3,3.5,0.8,0.85
    ```
 
 ## Tips for Best Results
