@@ -1,0 +1,2 @@
+models/spacy/**/* filter=lfs diff=lfs merge=lfs -text
+models/nltk/**/* filter=lfs diff=lfs merge=lfs -text
