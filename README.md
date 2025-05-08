@@ -220,7 +220,7 @@ A: Both tools support English and Dutch content, with special handling for:
 - Language detection
 - Stop word removal
 - Named entity recognition
-- Sentiment analysis (English only)
+- Sentiment analysis
 
 ## Machine Learning Components
 
@@ -302,8 +302,6 @@ The Index Generator uses natural language processing (NLP) techniques:
    - No training required
    - Real-time processing
    - Language-specific handling:
-     - English: Full sentiment analysis
-     - Dutch: Basic keyword matching only
 
 ### Tips for Better ML Results
 
