@@ -1,4 +1,9 @@
-# Sustainability Analysis Tools
+![FBB_Logo](https://firmbackbone.nl/wp-content/uploads/sites/694/2025/03/FBB-logo-wide.png)
+
+**[FIRMBACKBONE](https://firmbackbone.nl)** is an organically growing longitudinal data-infrastructure with information on Dutch companies for scientific research and education. Once it is ready, it will become available for researchers and students affiliated with Dutch member universities through the Open Data Infrastructure for Social Science and Economic Innovations ([ODISSEI](https://odissei-data.nl/nl/)). FIRMBACKBONE is an initiative of Utrecht University ([UU](https://www.uu.nl/en)) and the Vrije Universiteit Amsterdam ([VU Amsterdam](https://vu.nl/en)) funded by the Platform Digital Infrastructure-Social Sciences and Humanities ([PDI-SSH](https://pdi-ssh.nl/en/front-page/)) for the period 2020-2025.
+
+# fbb-sustainability-analysis-cli
+FBB Sustainability Analysis command line interface
 
 This package provides two main tools for analyzing sustainability-related content in websites:
 
@@ -30,36 +35,6 @@ python -m nltk.downloader punkt wordnet vader_lexicon omw-1.4
 
 # Download spaCy models
 python -m spacy download en_core_web_trf
-```
-
-### Required Files for Offline Use
-
-1. **NLTK Data:**
-   - punkt_tab [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/tokenizers/punkt_tab.zip)
-   - wordnet [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/wordnet.zip)
-   - vader_lexicon [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/sentiment/vader_lexicon.zip)
-   - omw-1.4 [zip](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/packages/corpora/omw-1.4.zip)
-
-For details on installation see the [installation instructions](https://www.nltk.org/data.html)
-
-2. **spaCy Models:**
-   - [en_core_web_trf (3.7.3)](https://github.com/explosion/spacy-models/releases/tag/en_core_web_trf-3.7.3) [tar.gz](https://github.com/explosion/spacy-models/releases/download/en_core_web_trf-3.7.3/en_core_web_trf-3.7.3.tar.gz)
-   - [nl_core_news_sm (3.7.0)](https://github.com/explosion/spacy-models/releases/tag/nl_core_news_sm-3.7.0) [tar.gz](https://github.com/explosion/spacy-models/releases/download/nl_core_news_sm-3.7.0/nl_core_news_sm-3.7.0.tar.gz)
-
-### Verifying Installation
-
-To verify the installation works offline:
-```bash
-# Test NLTK
-python -c "import nltk; nltk.data.find('tokenizers/punkt')"
-
-# Test spaCy
-python -c "import spacy; nlp = spacy.load('en_core_web_trf')"
-
-# Test the tools
-python keyword_extractor.py --text-data data/sample_data.ndjson \
-                           --metrics data/sample_metrics.csv \
-                           --output data/keyword_imp.csv
 ```
 
 ## Quick Start
