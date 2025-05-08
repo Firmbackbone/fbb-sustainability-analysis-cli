@@ -40,6 +40,11 @@ ENV/
 !data/sample_*.csv
 !data/sample_*.ndjson
 
+# Model files
+models/nltk/
+models/spacy/
+!models/README.md
+
 # Logs
 *.log
 
