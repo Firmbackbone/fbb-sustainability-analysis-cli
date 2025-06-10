@@ -31,10 +31,11 @@ pip install -r requirements.txt
 ### 3. Download Required Models
 ```bash
 # Download NLTK data
-python -m nltk.downloader punkt wordnet vader_lexicon omw-1.4
+python -m nltk.downloader punkt punkt_tab wordnet vader_lexicon omw-1.4
 
 # Download spaCy models
 python -m spacy download en_core_web_trf
+python -m spacy download nl_core_news_sm
 ```
 
 ## Quick Start
