@@ -113,6 +113,7 @@ The final score is calculated using three components:
    - Only calculated when keywords are found
    - Weight: 0.2 (adjustable)
 
+A combined score is calculated by: (simple × weight) + (advanced × weight) + ((sentiment + 1) × weight)
 The scores are normalized to be between 0 and 1, where:
 - 1.0 represents the highest scoring website in the dataset
 - 0.0 represents websites with no sustainability content
