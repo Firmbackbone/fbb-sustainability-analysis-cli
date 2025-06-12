@@ -157,7 +157,7 @@ The final score is calculated using three components:
 
   - Note: The sentiment score is shifted by +1 so that only positive or neutral sentiment increases the score, while negative sentiment does not penalize the site. 
 
-4. **Final Score**:
+5. **Final Score**:
   The scores are normalized to be between 0 and 1, where:
   * 1.0 represents the highest scoring website in the dataset
   * 0.0 represents websites with no sustainability content
