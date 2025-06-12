@@ -149,7 +149,7 @@ The final score is calculated using three components:
    - Only calculated when keywords are found
    - Weight: 0.2 (adjustable)
 
-4. **Raw Score Calculation**:
+4. **Raw Score**:
   * Simple matches (default 40% weight)
   * Advanced matches (default 40% weight)
   * Sentiment analysis (default 20% weight)
@@ -157,10 +157,11 @@ The final score is calculated using three components:
 
   - Note: The sentiment score is shifted by +1 so that only positive or neutral sentiment increases the score, while negative sentiment does not penalize the site. 
 
-The scores are normalized to be between 0 and 1, where:
-- 1.0 represents the highest scoring website in the dataset
-- 0.0 represents websites with no sustainability content
-- All other websites get scores between 0 and 1, preserving relative differences
+4. **Final Score**:
+  The scores are normalized to be between 0 and 1, where:
+  * 1.0 represents the highest scoring website in the dataset
+  * 0.0 represents websites with no sustainability content
+  * All other websites get scores between 0 and 1, preserving relative differences
 
 ## Data Format Requirements
 
