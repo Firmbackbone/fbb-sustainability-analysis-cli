@@ -100,7 +100,28 @@ LEMMATIZER: Final = WordNetLemmatizer()
 
 
 def _tokenise(text: str) -> List[str]:
-    return [LEMMATIZER.lemmatize(t.lower()) for t in TOKENIZER.tokenize(text)]
+    """Tokenize text while preserving multi-word phrases."""
+    # First, split into words
+    words = [LEMMATIZER.lemmatize(t.lower()) for t in TOKENIZER.tokenize(text)]
+
+    # Create a list to store both individual words and potential phrases
+    tokens = []
+
+    # Add individual words
+    tokens.extend(words)
+
+    # Add potential phrases (2-3 word combinations)
+    for i in range(len(words) - 1):
+        # Add 2-word phrases
+        phrase = f"{words[i]} {words[i + 1]}"
+        tokens.append(phrase)
+
+        # Add 3-word phrases if possible
+        if i < len(words) - 2:
+            phrase = f"{words[i]} {words[i + 1]} {words[i + 2]}"
+            tokens.append(phrase)
+
+    return tokens
 
 
 ###############################################################################
@@ -154,14 +175,21 @@ class IndexGenerator:
         self._syn_cache[word] = syns
         return syns
 
+    def _clean_keyword(self, keyword: str) -> str:
+        """Remove quotes from keywords if present."""
+        return keyword.strip("\"'") if keyword else keyword
+
     def score_one(self, text: str, keywords_en: list[str]) -> tuple[int, float, float]:
         """Return (simple, advanced, sentiment) scores for a single doc."""
+        # Clean keywords by removing quotes
+        cleaned_keywords = [self._clean_keyword(kw) for kw in keywords_en]
+
         # Process with GPU if available (for future processing)
         # This currently uses CPU processing but is structured for GPU acceleration
         if self.device:
-            return self._score_one_gpu(text, keywords_en)
+            return self._score_one_gpu(text, cleaned_keywords)
         else:
-            return self._score_one_cpu(text, keywords_en)
+            return self._score_one_cpu(text, cleaned_keywords)
 
     def _score_one_cpu(
         self, text: str, keywords_en: list[str]
@@ -172,8 +200,8 @@ class IndexGenerator:
         # Detect language for language-specific adjustments
         lang = detect_lang(text[:1000] if len(text) > 1000 else text)
 
-        # simple
-        simple = sum(1 for kw in keywords_en if kw in tokens)
+        # simple - now handles multi-word keywords
+        simple = sum(1 for kw in keywords_en if kw.lower() in tokens)
         if simple > 0:
             logger.debug(f"Found {simple} simple matches")
 
@@ -182,15 +210,18 @@ class IndexGenerator:
         matched_keywords = set()
 
         for kw in keywords_en:
-            if kw in tokens:
+            kw_lower = kw.lower()
+            if kw_lower in tokens:
                 advanced += 1
                 matched_keywords.add(kw)
                 logger.debug(f"Found direct match for keyword: {kw}")
-            for syn in self._synonyms(kw):
-                if syn != kw and syn in tokens:
-                    advanced += 0.5
-                    matched_keywords.add(kw)
-                    logger.debug(f"Found synonym match: {syn} for keyword: {kw}")
+            # Only check synonyms for single-word keywords
+            elif " " not in kw:
+                for syn in self._synonyms(kw):
+                    if syn != kw and syn.lower() in tokens:
+                        advanced += 0.5
+                        matched_keywords.add(kw)
+                        logger.debug(f"Found synonym match: {syn} for keyword: {kw}")
 
         # Calculate sentiment only for matched portions
         sentiment = 0.0
