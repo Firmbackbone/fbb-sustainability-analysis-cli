@@ -31,10 +31,11 @@ pip install -r requirements.txt
 ### 3. Download Required Models
 ```bash
 # Download NLTK data
-python -m nltk.downloader punkt wordnet vader_lexicon omw-1.4
+python -m nltk.downloader punkt punkt_tab wordnet vader_lexicon omw-1.4
 
 # Download spaCy models
 python -m spacy download en_core_web_trf
+python -m spacy download nl_core_news_sm
 ```
 
 ## Quick Start
@@ -112,6 +113,7 @@ The final score is calculated using three components:
    - Only calculated when keywords are found
    - Weight: 0.2 (adjustable)
 
+A combined score is calculated by: (simple × weight) + (advanced × weight) + ((sentiment + 1) × weight)
 The scores are normalized to be between 0 and 1, where:
 - 1.0 represents the highest scoring website in the dataset
 - 0.0 represents websites with no sustainability content
@@ -149,10 +151,19 @@ The final score is calculated using three components:
    - Only calculated when keywords are found
    - Weight: 0.2 (adjustable)
 
-The scores are normalized to be between 0 and 1, where:
-- 1.0 represents the highest scoring website in the dataset
-- 0.0 represents websites with no sustainability content
-- All other websites get scores between 0 and 1, preserving relative differences
+4. **Raw Score**:
+  * Simple matches (default 40% weight)
+  * Advanced matches (default 40% weight)
+  * Sentiment analysis (default 20% weight)
+  * Formula: (simple × simple_weight) + (advanced × advanced_weight) + ((sentiment + 1) × sentiment_weight)
+
+  - Note: The sentiment score is shifted by +1 so that only positive or neutral sentiment increases the score, while negative sentiment does not penalize the site. 
+
+5. **Final Score**:
+  The scores are normalized to be between 0 and 1, where:
+  * 1.0 represents the highest scoring website in the dataset
+  * 0.0 represents websites with no sustainability content
+  * All other websites get scores between 0 and 1, preserving relative differences
 
 ## Data Format Requirements
 
@@ -220,7 +231,7 @@ A: Both tools support English and Dutch content, with special handling for:
 - Language detection
 - Stop word removal
 - Named entity recognition
-- Sentiment analysis (English only)
+- Sentiment analysis
 
 ## Machine Learning Components
 
@@ -302,8 +313,6 @@ The Index Generator uses natural language processing (NLP) techniques:
    - No training required
    - Real-time processing
    - Language-specific handling:
-     - English: Full sentiment analysis
-     - Dutch: Basic keyword matching only
 
 ### Tips for Better ML Results
 
