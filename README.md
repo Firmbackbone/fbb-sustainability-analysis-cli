@@ -181,6 +181,23 @@ The final score is calculated using three components:
    green technology
    ```
 
+   #### Structure and Requirements for Input Keywords
+   - The input keywords file must be a CSV with a header, typically named `keyword`.
+   - Each row should contain a single keyword or key phrase (multi-word phrases are allowed).
+   - Example:
+     ```
+     keyword
+     sustainability
+     renewable energy
+     green technology
+     circular economy
+     ```
+   - **Quoting:**
+     - Keywords should not be surrounded by quotes. If your CSV contains quoted keywords (e.g., "sustainability"), the script will automatically remove the quotes during processing.
+   - **Filtering:**
+     - The script automatically filters out keywords that are recognized as person or organization names (in both English and Dutch) to avoid false positives.
+     - Only relevant, content-based keywords are used for scoring.
+
 3. **Metrics (CSV format, for Keyword Extractor)**
    ```
    domain,score
