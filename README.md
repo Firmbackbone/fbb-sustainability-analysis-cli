@@ -414,3 +414,10 @@ python keyword_extractor.py --text-data data/sample_data.ndjson \
                            --metrics data/sample_metrics.csv \
                            --output data/keyword_imp.csv
 ``` 
+
+## Developed by
+
+Hadi Mohammadi  
+GitHub: [mohammadi-hadi](https://github.com/mohammadi-hadi)  
+LinkedIn: [mohammadi-hadi](https://www.linkedin.com/in/mohammadi-hadi/)  
+Email: h.mohammadi@uu.nl 
